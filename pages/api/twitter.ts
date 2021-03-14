@@ -5,8 +5,9 @@ import { API_KEY_BEARER } from '../../env';
 const TWEET_FIELDS = ['created_at'];
 // Additional fields returned byb the API to enriching the user
 const USER_FIELDS = ['url', 'name', 'username', 'profile_image_url', 'verified'];
+// Expansions enrich the data returned by twitter API
 const EXPANSIONS = ['author_id', 'entities.mentions.username'];
-const MAX_RESULTS = '10';
+const MAX_RESULTS = '20';
 
 async function searchTwitter(query: string) {
   const url = new URL('https://api.twitter.com/2/tweets/search/recent');
