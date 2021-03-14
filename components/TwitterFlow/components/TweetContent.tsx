@@ -1,4 +1,5 @@
 import { Tweet } from "../../../types/twitter";
+import styles from './TweetContent.module.css';
 
 type ITweetContentProps = {
   tweet: Tweet
@@ -9,12 +10,17 @@ function formatTweetContent(tweet: Tweet): { __html: string } {
   let str = tweet.text;
 
   // replace links
-  str = str.replace(/(https?:\/\/[^\ ]*)/g, (a, b) => `<a href="${b}">${b}</a>`);
+  str = str.replace(/(https?:\/\/[^\ ]*)/g, (a, b: string) => (
+    `<a href="${b}" className="${styles.link}">${b}</a>`
+  ));
 
   // replace mentions
   if (tweet?.entities?.mentions) {
     tweet.entities.mentions.map(mention => {
-      str = str.replace(`@${mention.username}`, `<a href="https://twitter.com/${mention.username}">@${mention.username}</a>`);
+      str = str.replace(
+        `@${mention.username}`,
+        `<a href="https://twitter.com/${mention.username}" className="${styles.link}">@${mention.username}</a>`
+      );
     })
   }
 
@@ -22,7 +28,10 @@ function formatTweetContent(tweet: Tweet): { __html: string } {
   // Regex is quite complicated but only checks two things
   // There is a space or a new line before
   // There is a space or an end of line after
-  str = str.replace(/(?<=[ ]|^)(#[^ ]+)(?=[ ]|$)/g, (a, b:string) => `<a href="https://twitter.com/hashtag/${b.substring(1)}">${b}</a>`);
+  str = str.replace(/(?<=[ ]|^)(#[^ ]+)(?=[ ]|$)/g, (a, b:string) => (
+    `<a href="https://twitter.com/hashtag/${b.substring(1)}" className="${styles.link}">${b}</a>`
+    )
+  );
 
   return { __html: str };
 }

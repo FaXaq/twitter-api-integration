@@ -17,10 +17,10 @@ export default function TweetsList({ searchTerm }: ITweetListProps) {
   }
 
   if (meta.result_count === 0) {
-    return <div>Oops... no result here.</div>
+    return <p>Oops... no result here.</p>
   }
 
-  return <div>
+  return (
     <ul>
       {tweets.map(tweet => (
         <li key={tweet.id}>
@@ -28,5 +28,5 @@ export default function TweetsList({ searchTerm }: ITweetListProps) {
         </li>
       ))}
     </ul>
-  </div>
+  )
 }

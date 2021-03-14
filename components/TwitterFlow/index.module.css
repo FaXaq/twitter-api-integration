@@ -1,0 +1,28 @@
+.container {
+  font-family: Lato;
+  padding: var(--padding);
+}
+
+.header {
+  padding-bottom: var(--padding);
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid var(--text-grey);
+  padding: 8px;
+}
+
+.input:focus {
+  border: none;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: var(--padding) 0;
+}
+
+.content {
+  overflow: auto;
+}
