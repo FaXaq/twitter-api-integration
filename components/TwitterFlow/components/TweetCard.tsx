@@ -2,6 +2,7 @@ import { Tweet, User } from "../../../types/twitter"
 import { DateTime } from 'luxon';
 import styles from './TweetCard.module.css'
 import { formatDuration } from "../../../helpers/duration";
+import TweetContent from "./TweetContent";
 
 type ITweetProps = {
   tweet: Tweet,
@@ -35,7 +36,7 @@ export default function TweetCard({ tweet, users }: ITweetProps) {
         <p className={styles.tweetDuration}>{formatDuration(diff)}</p>
       </div>
       <div className={styles.tweetContent}>
-        {tweet.text}
+        <TweetContent tweet={tweet} />
       </div>
     </div>
   </div>

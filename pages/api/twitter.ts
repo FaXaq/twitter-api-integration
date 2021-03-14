@@ -28,6 +28,7 @@ async function searchTwitter(query: string) {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  // FIXME: We should have at least a few things checking security
   let query = req.query.query;
 
   // sanitize query parameter
