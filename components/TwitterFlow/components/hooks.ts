@@ -5,8 +5,9 @@ import { TwitterAPIResponse, User } from "../../../types/twitter";
 
 export function useTweetsList(searchTerm: string) {
   const url = useMemo(() => {
-    // if url is null, no fetch will be done
-    if (searchTerm === '') return null;
+    // if user has not entered at least two caracters,
+    // no response !
+    if (searchTerm.length < 2) return null;
 
     const searchParams = new URLSearchParams({ query: searchTerm }).toString();
     return `/api/twitter?${searchParams}`
