@@ -9,7 +9,7 @@ export default function TweetsList({ searchTerm }: ITweetListProps) {
   const { tweets, users, error, meta, isLoading } = useTweetsList(searchTerm);
 
   if (searchTerm === '') {
-    return <p>Please enter a query !</p>
+    return <p>Please enter a query of at least two characters</p>
   }
 
   if (isLoading) {
@@ -17,7 +17,7 @@ export default function TweetsList({ searchTerm }: ITweetListProps) {
   }
 
   if (meta.result_count === 0) {
-    return <p>Oops... no result here.</p>
+    return <p>Oops... no result here :(</p>
   }
 
   return (
