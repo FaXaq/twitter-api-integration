@@ -1,5 +1,7 @@
 import { Tweet, User } from "../../../types/twitter"
+import { DateTime } from 'luxon';
 import styles from './TweetCard.module.css'
+import { formatDuration } from "../../../helpers/duration";
 
 type ITweetProps = {
   tweet: Tweet,
@@ -8,6 +10,11 @@ type ITweetProps = {
 
 export default function TweetCard({ tweet, users }: ITweetProps) {
   const author = users[tweet.author_id];
+
+  const tweetDate = DateTime.fromISO(tweet.created_at);
+
+  const diff = tweetDate.diffNow().toMillis();
+
   return <div className={styles.container}>
     <div>
       <img
@@ -25,7 +32,7 @@ export default function TweetCard({ tweet, users }: ITweetProps) {
           {author.name}
           <span className={styles.tweetAuthorUsername}> @{author.username}</span>
         </a>
-        <p className={styles.tweetDate}>2min</p>
+        <p className={styles.tweetDuration}>{formatDuration(diff)}</p>
       </div>
       <div className={styles.tweetContent}>
         {tweet.text}

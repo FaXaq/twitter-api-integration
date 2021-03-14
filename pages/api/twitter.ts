@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { API_KEY_BEARER } from '../../env';
 
 // Additional fields returned byb the API to enriching the tweet
-const TWEET_FIELDS = ['in_reply_to_user_id', 'referenced_tweets'];
+const TWEET_FIELDS = ['created_at'];
 // Additional fields returned byb the API to enriching the user
 const USER_FIELDS = ['url', 'name', 'username', 'profile_image_url', 'verified'];
 const EXPANSIONS = ['author_id', 'entities.mentions.username'];

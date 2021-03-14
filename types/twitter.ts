@@ -20,10 +20,7 @@ export type Tweet = {
   entities?: {
     mentions?: Array<Mention>
   },
-  referenced_tweets?: Array<{
-    type: string,
-    id: string,
-  }>
+  created_at: string,
 }
 
 export type TwitterAPIResponse = {

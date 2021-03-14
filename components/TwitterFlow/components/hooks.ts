@@ -12,7 +12,12 @@ export function useTweetsList(searchTerm: string) {
     return `/api/twitter?${searchParams}`
   }, [searchTerm]);
 
-  const { data: response, error } = useSWR<TwitterAPIResponse, any>(url, fetcher);
+  const { data: response, error } = useSWR<TwitterAPIResponse, any>(
+    url,
+    fetcher,
+    // refresh every 10000ms
+    { refreshInterval: 10000 }
+  );
 
   // FIXME: hard coded loading state
   if (response === undefined) {
