@@ -13,6 +13,7 @@ export default function TwitterFlow() {
     }, 250), [])
 
   return <div>
+    <h2>Recherche twitter</h2>
     <input type="text" onChange={e => onInputChange(e.target.value)} />
     <TweetsList searchTerm={searchTerm} />
   </div>

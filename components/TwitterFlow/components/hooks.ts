@@ -14,12 +14,17 @@ export function useTweetsList(searchTerm: string) {
 
   const { data: response, error } = useSWR<TwitterAPIResponse, any>(url, fetcher);
 
-  // kind of a loading state
+  // FIXME: hard coded loading state
   if (response === undefined) {
     return { error: undefined, tweets: undefined, users: undefined, meta: undefined, isLoading: true };
   }
 
-  console.log(response, error);
+  // no results
+  if (response.meta.result_count === 0) {
+    return {
+      error: undefined, tweets: [], users: {}, meta: response.meta, isLoading: false
+    }
+  }
 
   // FIXME: we could use normalizr here
   // normalize users
